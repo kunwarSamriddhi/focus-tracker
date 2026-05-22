@@ -87,6 +87,7 @@ const Dashboard = () => {
     return (
         <div>
             <h1>Dashboard</h1>
+            <h2>Your focus sessions: </h2>
 
             {sessions.map((session) => {
 
