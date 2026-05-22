@@ -60,8 +60,24 @@ const Dashboard = () => {
 
     }
 
-    const endSession=()=>{
-        
+    const endSession = async () => {
+        const token = localStorage.getItem("token");
+        try {
+
+            const response = await fetch("http://localhost:5000/api/auth/end-session", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            const data = await response.json();
+            console.log(data);
+            fetchSessions();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const activeSession = sessions.find(
@@ -72,15 +88,26 @@ const Dashboard = () => {
         <div>
             <h1>Dashboard</h1>
 
-            {sessions.map((session) => (
-                <div key={session._id}>
+            {sessions.map((session) => {
 
-                    <p>Start: {session.startTime}</p>
+                const formattedStart =
+                    new Date(session.startTime).toLocaleString();
 
-                    <p>End: {session.endTime}</p>
+                const formattedEnd =
+                    session.endTime
+                        ? new Date(session.endTime).toLocaleString()
+                        : "Session Active";
 
-                </div>
-            ))}
+                return (
+                    <div key={session._id}>
+
+                        <p>Start: {formattedStart}</p>
+
+                        <p>End: {formattedEnd}</p>
+
+                    </div>
+                );
+            })}
 
 
             {activeSession ? (
