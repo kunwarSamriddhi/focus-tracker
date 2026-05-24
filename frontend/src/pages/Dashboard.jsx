@@ -7,6 +7,8 @@ const Dashboard = () => {
 
     const [sessions, setSessions] = useState([]);
 
+    const [currentTime, setCurrentTime] = useState(Date.now());
+
     const fetchSessions = async () => {
         const token = localStorage.getItem("token");
         try {
@@ -81,35 +83,50 @@ const Dashboard = () => {
     }
 
     const activeSession = sessions.find(
-        (session) => session.endTime === null
+        session => session.endTime === null
     );
+
+    let hours = 0;
+    let minutes = 0;
+
+    if (activeSession) {
+
+        const duration = currentTime - new Date(activeSession.startTime);
+
+        const totalMinutes = Math.floor(duration / 1000 / 60);
+
+        hours = Math.floor(totalMinutes / 60);
+
+        minutes = totalMinutes % 60;
+    }
+
+    useEffect(() => {
+
+        const interval = setInterval(() => {
+            setCurrentTime(Date.now());
+        }, 1000);
+
+        return () => clearInterval(interval);
+
+    }, []);
+
 
     return (
         <div>
             <h1>Dashboard</h1>
             <h2>Your focus sessions: </h2>
 
-            {sessions.map((session) => {
+            {activeSession ? (
+                <div>
+                    <p>Start: {new Date(activeSession.startTime).toLocaleString()}</p>
 
-                const formattedStart =
-                    new Date(session.startTime).toLocaleString();
+                    <p>End: Status: Active</p>
 
-                const formattedEnd =
-                    session.endTime
-                        ? new Date(session.endTime).toLocaleString()
-                        : "Session Active";
-
-                return (
-                    <div key={session._id}>
-
-                        <p>Start: {formattedStart}</p>
-
-                        <p>End: {formattedEnd}</p>
-
-                    </div>
-                );
-            })}
-
+                    <p>Duration: {hours}h {minutes}m</p>
+                </div>
+            ) : (
+                <p>No active sessions</p>
+            )}
 
             {activeSession ? (
                 <button onClick={endSession}>End Session</button>

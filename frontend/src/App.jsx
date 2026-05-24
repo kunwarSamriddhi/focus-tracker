@@ -1,4 +1,5 @@
 import Dashboard from "./pages/Dashboard"
+import History from "./pages/History";
 import Login from "./pages/Login"
 import {
   BrowserRouter as Router,
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/history" element={<History />} />
           </Routes>
         </Router>
       </div>
