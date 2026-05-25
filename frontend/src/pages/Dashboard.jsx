@@ -110,6 +110,11 @@ const Dashboard = () => {
 
     }, []);
 
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    }
+
 
     return (
         <div>
@@ -136,6 +141,13 @@ const Dashboard = () => {
                 </button>
             )
             }
+            <br /><br />
+            <button onClick={() => navigate("/history")}>View History</button>
+
+            <br /><br />
+            <button onClick={handleLogout}>
+                Logout
+            </button>
         </div>
     )
 }

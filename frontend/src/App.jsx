@@ -1,6 +1,7 @@
 import Dashboard from "./pages/Dashboard"
 import History from "./pages/History";
 import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,9 +14,10 @@ function App() {
         <h1>Hello Focus App</h1>
         <Router>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/history" element={<History />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </Router>
       </div>
