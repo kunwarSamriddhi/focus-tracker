@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
@@ -76,16 +76,21 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className='w-full'>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-                <h3>Login</h3>
+                <h2 className="text-3xl font-bold text-center text-pink-500">
+                    Login
+                </h2>
 
                 <div className="mb-3">
 
-                    <label htmlFor="inputEmail">
-                        Email address
+                    <label
+                        htmlFor="inputEmail"
+                        className="block mb-2 font-medium"
+                    >
+                        Email Address
                     </label>
 
                     <input
@@ -94,9 +99,22 @@ const Login = () => {
                         name="email"
                         value={credential.email}
                         onChange={handleChange}
+                        className=" w-full 
+                                    p-3
+                                    border
+                                    rounded-xl
+                                    focus:outline-none
+                                    focus:ring-2
+                                    focus:ring-pink-300 "
                     />
 
-                    <label htmlFor="inputPassword">
+                    <br />
+                    <br />
+
+                    <label
+                        htmlFor="inputPassword"
+                        className="block mb-2 font-medium"
+                    >
                         Password
                     </label>
 
@@ -106,14 +124,36 @@ const Login = () => {
                         name="password"
                         value={credential.password}
                         onChange={handleChange}
+                        className=" w-full
+                                    p-3
+                                    border
+                                    rounded-xl
+                                    focus:outline-none
+                                    focus:ring-2
+                                    focus:ring-pink-300 "
                     />
 
                     {error && (
-                        <p>{error}</p>
+                        <p className="text-red-500 text-center">
+                            <br />
+                            {error}
+                        </p>
                     )}
+
+                    <br />
+                    <br />
 
                     <button
                         type="submit"
+                        className=" bg-pink-400
+                                    hover:bg-pink-500
+                                    text-white
+                                    font-semibold
+                                    py-3
+                                    px-6
+                                    rounded-xl
+                                    transition
+                                  "
                         disabled={loading}
                     >
                         {
@@ -122,9 +162,14 @@ const Login = () => {
                                 : "Submit"
                         }
                     </button>
-                    <br /><br />
-                    <h3>Not registered ? <Link className="nav-link" to="/signup">Signup</Link></h3>
-                    
+
+                    <br />
+
+                    <h3 className='text-center'>Not registered ? <span className="nav-link 
+                              text-pink-500 
+                              cursor-pointer 
+                              font-semibold" 
+                    onClick={() => navigate("/signup")}>Signup</span></h3>
 
                 </div>
             </form>

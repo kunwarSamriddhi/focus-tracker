@@ -45,7 +45,7 @@ const History = () => {
 
     return (
         <div>
-            <h1>History</h1>
+            <h1 className='text-4xl font-bold text-blue-500'>History</h1>
             {completedSessions.map((session) => {
                 const formattedStart =
                     new Date(session.startTime).toLocaleString();

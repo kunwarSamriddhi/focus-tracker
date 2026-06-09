@@ -54,18 +54,56 @@ const Signup = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <h3>SignUp</h3>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <h2 className="text-3xl font-bold text-center text-pink-500">Signup</h2>
+
                 <div className="mb-3">
-                    <label htmlFor="inputEmail">Email address</label>
-                    <input type="email" id='inputEmail' name='email' value={credential.email} onChange={handleChange} />
 
-                    <label htmlFor="inputPassword">Password</label>
-                    <input type="password" id='inputPassword' name='password' value={credential.password} onChange={handleChange} />
+                    <label htmlFor="inputEmail" className="block mb-2 font-medium">Email address</label>
 
-                    {error && <p>{error}</p>}
+                    <input type="email" id='inputEmail' name='email' value={credential.email} onChange={handleChange} className=" w-full 
+                                    p-3
+                                    border
+                                    rounded-xl
+                                    focus:outline-none
+                                    focus:ring-2
+                                    focus:ring-pink-300 "
+                    />
+
+                    <br /> <br />
+                    <label htmlFor="inputPassword" className="block mb-2 font-medium">Password</label>
+
+                    <input type="password" id='inputPassword' name='password' value={credential.password} onChange={handleChange} className=" w-full 
+                                    p-3
+                                    border
+                                    rounded-xl
+                                    focus:outline-none
+                                    focus:ring-2
+                                    focus:ring-pink-300 "
+                    />
+
                     <br />
-                    <button type="submit" className="btn btn-primary">Submit</button>
+
+                    {error &&
+                        <p className="text-red-500 text-center">
+                            <br />
+                            {error}
+                        </p>
+                    }
+
+                    <br />
+                    <button type="submit" className=" bg-pink-400
+                                    hover:bg-pink-500
+                                    text-white
+                                    font-semibold
+                                    py-3
+                                    px-6
+                                    rounded-xl
+                                    transition
+                                  "
+                    >
+                        Submit
+                    </button>
                 </div>
             </form>
         </div>

@@ -110,7 +110,10 @@ const Dashboard = () => {
 
     }, []);
 
-    const handleLogout = () => {
+    const handleLogout = async() => {
+        if(activeSession){
+            await endSession();
+        }
         localStorage.removeItem("token");
         navigate("/login");
     }
@@ -118,7 +121,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1 className='text-4xl font-bold text-blue-500'>Dashboard</h1>
             <h2>Your focus sessions: </h2>
 
             {activeSession ? (
