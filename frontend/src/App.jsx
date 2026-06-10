@@ -19,7 +19,7 @@ function App() {
           </h1>
 
           <p className="text-center text-gray-500 mt-2">
-            Stay focused, one session at a time ✨
+            Stay focused, one session at a time
           </p>
 
         </div>

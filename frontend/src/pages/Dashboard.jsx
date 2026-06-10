@@ -110,8 +110,8 @@ const Dashboard = () => {
 
     }, []);
 
-    const handleLogout = async() => {
-        if(activeSession){
+    const handleLogout = async () => {
+        if (activeSession) {
             await endSession();
         }
         localStorage.removeItem("token");
@@ -121,34 +121,111 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1 className='text-4xl font-bold text-blue-500'>Dashboard</h1>
-            <h2>Your focus sessions: </h2>
+            <h1 className="text-3xl font-bold text-pink-500 mb-6">
+                Dashboard
+            </h1>
+
+            <div className="bg-pink-100 rounded-2xl p-6 shadow-md">
+                <h2 className="text-xl font-semibold mb-4">
+                    Current Session
+                </h2>
+
+
+                {activeSession ? (
+                    <div className='space-y-3'>
+                        <p>
+                            <span className="font-semibold">
+                                Status:
+                            </span>{" "}
+                            <span className="text-green-400">Active</span>
+                        </p>
+
+                        <p>
+                            <span className='font-semibold'>Started</span>{" "}
+                            : {new Date(activeSession.startTime).toLocaleString()}
+
+                        </p>
+
+                        <p>
+                            <span className="font-semibold">
+                                Duration:
+                            </span>{" "}
+                            {hours}h {minutes}m
+                        </p>
+
+                    </div>
+
+                ) : (
+
+                    <p className="text-gray-500">
+                        No active session running
+                    </p>
+
+                )}
+            </div>
 
             {activeSession ? (
-                <div>
-                    <p>Start: {new Date(activeSession.startTime).toLocaleString()}</p>
-
-                    <p>End: Status: Active</p>
-
-                    <p>Duration: {hours}h {minutes}m</p>
-                </div>
+                <button
+                    onClick={endSession}
+                    className="
+                            bg-pink-400
+                            text-white
+                            px-4
+                            py-2
+                            rounded-xl
+                            mt-4
+                            hover:bg-pink-500
+                            transition
+                    "
+                >
+                    End Session
+                </button>
             ) : (
-                <p>No active sessions</p>
-            )}
-
-            {activeSession ? (
-                <button onClick={endSession}>End Session</button>
-            ) : (
-                <button onClick={startSession}>
+                <button
+                    onClick={startSession}
+                    className="
+                            bg-pink-400
+                            text-white
+                            px-4
+                            py-2
+                            rounded-xl
+                            mt-4
+                            hover:bg-pink-500
+                            transition
+                     "
+                >
                     Start Session
                 </button>
             )
             }
             <br /><br />
-            <button onClick={() => navigate("/history")}>View History</button>
+            <button
+                onClick={() => navigate("/history")}
+                className="
+                    bg-white
+                    border
+                    px-4
+                    py-2
+                    rounded-xl
+                    hover:bg-pink-50
+                "
+            >
+                History
+            </button>
 
             <br /><br />
-            <button onClick={handleLogout}>
+
+            <button
+                onClick={handleLogout}
+                className="
+                    bg-white
+                    border
+                    px-4
+                    py-2
+                    rounded-xl
+                    hover:bg-pink-50
+                "
+            >
                 Logout
             </button>
         </div>
